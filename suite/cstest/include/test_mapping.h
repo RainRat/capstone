@@ -37,6 +37,7 @@ static const cs_enum_id_map test_arch_map[] = {
 	{ .str = "CS_ARCH_WASM", .val = CS_ARCH_WASM },
 	{ .str = "CS_ARCH_X86", .val = CS_ARCH_X86 },
 	{ .str = "CS_ARCH_XCORE", .val = CS_ARCH_XCORE },
+	{ .str = "CS_ARCH_XTENSA", .val = CS_ARCH_XTENSA },
 	{ .str = "aarch64", .val = CS_ARCH_AARCH64 },
 	{ .str = "alpha", .val = CS_ARCH_ALPHA },
 	{ .str = "arm", .val = CS_ARCH_ARM },
@@ -58,6 +59,7 @@ static const cs_enum_id_map test_arch_map[] = {
 	{ .str = "wasm", .val = CS_ARCH_WASM },
 	{ .str = "x86", .val = CS_ARCH_X86 },
 	{ .str = "xcore", .val = CS_ARCH_XCORE },
+	{ .str = "xtensa", .val = CS_ARCH_XTENSA },
 };
 
 /// REMEMBER TO SORT AFTER EDIT
@@ -167,6 +169,7 @@ static const cs_enum_id_map test_mode_map[] = {
 	{ .str = "CS_MODE_TRICORE_162", .val = CS_MODE_TRICORE_162 },
 	{ .str = "CS_MODE_V8", .val = CS_MODE_V8 },
 	{ .str = "CS_MODE_V9", .val = CS_MODE_V9 },
+	{ .str = "CS_MODE_XTENSA", .val = CS_MODE_XTENSA },
 };
 
 static const TestOptionMapEntry test_option_map[] = {
@@ -278,15 +281,6 @@ static const cs_enum_id_map cs_enum_map[] = {
 	{ .str = "AARCH64_SFT_LSR", .val = AARCH64_SFT_LSR },
 	{ .str = "AARCH64_SFT_MSL", .val = AARCH64_SFT_MSL },
 	{ .str = "AARCH64_SFT_ROR", .val = AARCH64_SFT_ROR },
-	{ .str = "AARCH64_SME_MATRIX_SLICE_OFF",
-	  .val = AARCH64_SME_MATRIX_SLICE_OFF },
-	{ .str = "AARCH64_SME_MATRIX_SLICE_OFF_RANGE",
-	  .val = AARCH64_SME_MATRIX_SLICE_OFF_RANGE },
-	{ .str = "AARCH64_SME_MATRIX_SLICE_REG",
-	  .val = AARCH64_SME_MATRIX_SLICE_REG },
-	{ .str = "AARCH64_SME_MATRIX_TILE", .val = AARCH64_SME_MATRIX_TILE },
-	{ .str = "AARCH64_SME_MATRIX_TILE_LIST",
-	  .val = AARCH64_SME_MATRIX_TILE_LIST },
 	{ .str = "AARCH64_SME_OP_INVALID", .val = AARCH64_SME_OP_INVALID },
 	{ .str = "AARCH64_SME_OP_TILE", .val = AARCH64_SME_OP_TILE },
 	{ .str = "AARCH64_SME_OP_TILE_VEC", .val = AARCH64_SME_OP_TILE_VEC },
