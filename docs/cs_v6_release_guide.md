@@ -176,6 +176,14 @@ Nonetheless, we hope this additional information is useful to you.
 - Architecture support was added (based on LLVM-18).
 - Support for `LITBASE`. Set the `LITBASE` with `cs_option(handle, CS_OPT_LITBASE, litbase_value)`.
 
+**BPF**
+
+- Added support for eBPF `ATOMIC` class instructions (using Linux mnemonics, not GNU ones. E.g. `acmpxchg64` instead of `axchg`)
+- Added support for eBPF signed `ALU` class instructions (`sdiv`, `smod`, `movs` variants. E.g. `smod r9, 0xc9d1d20b`)
+- Added support for eBPF `JMP32` class instructions (E.g. `jslt32 r7, -0xa46e0bd, -0x33f1`)
+- Updated the syntax for eBPF legacy packet instructions (similar to LLVM mnemonics, not GNU ones (E.g. `ldabsw [skb-0x8]`). `skb` is the socket buffer.
+- Corrected the signedness interpretation of `immidiate` and `offset` operands
+
 **UX**
 
 - Instruction alias (see below).
@@ -339,6 +347,7 @@ Such an instruction is ill-defined in LLVM and should be fixed upstream.
 | Instruction alias | Many instruction alias (e.g. `BF`) were removed from the instruction enum (see new alias feature below). | Alias information is provided separately in their own fields. |
 | `crx` | `ppc_ops_crx` was removed. | It was never used in the first place. |
 | `(RA\|0)` | The `(RA\|0)` cases (see ISA for details) for which `0` is used, the `PPC_REG_ZERO` register is used. The register name of it is `0`. | Mimics LLVM behavior. |
+| `cr` `un/so` bit. | The verbose condition register names changes the `so` bit name to `un`. Just as LLVM does. | Mimics LLVM behavior. |
 
 **Mips**
 
