@@ -233,12 +233,16 @@ static struct {
 	{ "tc160", "Tricore V1.6", CS_ARCH_TRICORE, CS_MODE_TRICORE_160 },
 	{ "tc161", "Tricore V1.6.1", CS_ARCH_TRICORE, CS_MODE_TRICORE_161 },
 	{ "tc162", "Tricore V1.6.2", CS_ARCH_TRICORE, CS_MODE_TRICORE_162 },
+	{ "tc180", "Tricore V1.8.0", CS_ARCH_TRICORE, CS_MODE_TRICORE_180 },
 
 	{ "loongarch32", "LoongArch 32-bit", CS_ARCH_LOONGARCH, CS_MODE_LOONGARCH32 },
 	{ "loongarch64", "LoongArch 64-bit", CS_ARCH_LOONGARCH, CS_MODE_LOONGARCH64 },
 	{ "esp32", "Xtensa ESP32", CS_ARCH_XTENSA, CS_MODE_XTENSA_ESP32 },
 	{ "esp32s2", "Xtensa ESP32S2", CS_ARCH_XTENSA, CS_MODE_XTENSA_ESP32S2 },
 	{ "esp8266", "Xtensa ESP8266", CS_ARCH_XTENSA, CS_MODE_XTENSA_ESP8266 },
+
+	{ "arc", "ARC Little-Endian", CS_ARCH_ARC, CS_MODE_LITTLE_ENDIAN },
+
 	{ NULL }
 };
 
@@ -324,6 +328,7 @@ static const char *get_arch_name(cs_arch arch)
 	case CS_ARCH_ALPHA: return "Alpha";
 	case CS_ARCH_HPPA: return "HPPA";
 	case CS_ARCH_LOONGARCH: return "LoongArch";
+	case CS_ARCH_ARC: return "ARC";
 	default: return NULL;
 	}
 }
@@ -442,6 +447,9 @@ static void print_details(csh handle, cs_arch arch, cs_mode md, cs_insn *ins)
 			break;
 		case CS_ARCH_XTENSA:
 			print_insn_detail_xtensa(handle, ins);
+			break;
+		case CS_ARCH_ARC:
+			print_insn_detail_arc(handle, ins);
 			break;
 		default: break;
 	}
@@ -631,6 +639,10 @@ int main(int argc, char **argv)
 
 				if (cs_support(CS_ARCH_XTENSA)) {
 					printf("xtensa=1 ");
+				}
+
+				if (cs_support(CS_ARCH_ARC)) {
+					printf("arc=1 ");
 				}
 
 				printf("\n");

@@ -103,6 +103,7 @@ typedef enum cs_arch {
 	CS_ARCH_HPPA, 		///< HPPA architecture
 	CS_ARCH_LOONGARCH, 	///< LoongArch architecture
 	CS_ARCH_XTENSA, 	///< Xtensa architecture
+	CS_ARCH_ARC, 	    ///< ARC architecture
 	CS_ARCH_MAX,
 	CS_ARCH_ALL = 0xFFFF, // All architectures - for cs_support()
 } cs_arch;
@@ -210,6 +211,7 @@ typedef enum cs_mode {
 	CS_MODE_TRICORE_160 = 1 << 5, ///< Tricore 1.6
 	CS_MODE_TRICORE_161 = 1 << 6, ///< Tricore 1.6.1
 	CS_MODE_TRICORE_162 = 1 << 7, ///< Tricore 1.6.2
+	CS_MODE_TRICORE_180 = 1 << 8, ///< Tricore 1.8.0
 	CS_MODE_HPPA_11 = 1 << 1, ///< HPPA 1.1
 	CS_MODE_HPPA_20 = 1 << 2, ///< HPPA 2.0
 	CS_MODE_HPPA_20W = CS_MODE_HPPA_20 | (1 << 3), ///< HPPA 2.0 wide
@@ -358,6 +360,7 @@ typedef struct cs_opt_skipdata {
 	/// BPF:       8 bytes.
 	/// TriCore:   2 bytes.
 	/// LoongArch: 4 bytes.
+	/// ARC: 	   2 bytes.
 	cs_skipdata_cb_t callback; 	// default value is NULL
 
 	/// User-defined data to be passed to @callback function pointer.
@@ -391,6 +394,7 @@ typedef struct cs_opt_skipdata {
 #include "hppa.h"
 #include "loongarch.h"
 #include "xtensa.h"
+#include "arc.h"
 
 #define MAX_IMPL_W_REGS 47
 #define MAX_IMPL_R_REGS 20
@@ -448,6 +452,7 @@ typedef struct cs_detail {
 		cs_hppa hppa; ///< HPPA architecture
 		cs_loongarch loongarch; ///< LoongArch architecture
 		cs_xtensa xtensa; ///< Xtensa architecture
+		cs_arc arc; ///< ARC architecture
 	};
 } cs_detail;
 
@@ -599,6 +604,8 @@ CAPSTONE_EXPORT
 void CAPSTONE_API cs_arch_register_alpha(void);
 CAPSTONE_EXPORT
 void CAPSTONE_API cs_arch_register_loongarch(void);
+CAPSTONE_EXPORT
+void CAPSTONE_API cs_arch_register_arc(void);
 
 /**
  This API can be used to either ask for archs supported by this library,
