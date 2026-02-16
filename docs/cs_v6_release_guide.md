@@ -249,6 +249,7 @@ Nonetheless, we hope this additional information is useful to you.
 
 - Decoding of conflicting segment overrides was changed to match CPU behavior:
   For instructions with both an FS/GS and a ES/CS/SS/DS overrides the FS/GS override now takes priority, regardless of prefix ordering.
+- Decoding of instructions with multiple mandatory prefixes was fixed. (e.g., `shld` with a data size override and a redundant `F3` prefix, or `addss` with an additional `66` prefix)
 
 **BPF**
 
@@ -279,6 +280,7 @@ Nonetheless, we hope this additional information is useful to you.
 - CI runs tests for s390x, Mips, PPC, and Android targets.
 - `csh` and `cs_option`'s argument `value` are now of type `uintptr_t` to ensure they can be cast between integer and pointer without issues.
   This makes Capstone build on systems which strictly distinguish integers and pointers.
+- Capstone works and is tested now on 32 bit machines.
 
 ### Instruction Alias
 
